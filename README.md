@@ -16,4 +16,4 @@ options
 
 `python3 clear_branches.py --filter feature master ls` will only consider branches starting with "feature"
 
-`python3 clear_branches.py --filter feature --remote origin2 ls` will remove branches starting with "filter" from remote "origin2" (and local!)
+`python3 clear_branches.py --filter feature --remote origin2 ls` will only consider branches starting with "filter" from remote "origin2" (and local!)
