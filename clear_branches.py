@@ -3,7 +3,7 @@ import subprocess
 import argparse
 
 parser = argparse.ArgumentParser(description='Clear already merged branches')
-parser.add_argument('base_branch', help='select master for example')
+parser.add_argument('base_branch', help='select master for example, this is your local branch!')
 parser.add_argument('operation', help='ls or rm', choices=['ls', 'rm'])
 parser.add_argument('--filter', help='Filter for branches that start with')
 parser.add_argument('--remote', help='Define remote', default='origin')
