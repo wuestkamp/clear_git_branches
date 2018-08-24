@@ -6,6 +6,7 @@ parser = argparse.ArgumentParser(description='Clear already merged branches')
 parser.add_argument('base_branch', help='select master for example')
 parser.add_argument('operation', help='ls or rm', choices=['ls', 'rm'])
 parser.add_argument('--filter', help='Filter for branches that start with')
+parser.add_argument('--remote', help='Define remote', default='origin')
 args = parser.parse_args()
 
 
@@ -21,7 +22,7 @@ def run_command(cmd):
     try:
         output = subprocess.check_output(cmd, shell=True).decode(sys.stdout.encoding)
     except subprocess.CalledProcessError as e:
-        output = "ERROR: " + e.output
+        output = "ERROR"
     return output
 
 
@@ -31,6 +32,7 @@ def get_branch_list():
     branch_list = []
     for line in output_list:
         line = line.strip()
+        line = line.strip('* ')
         if (args.filter is None or line.startswith(args.filter)) and args.base_branch not in line and line:
             branch_list.append(line)
 
@@ -51,7 +53,7 @@ def ls():
 def rm():
     branch_list = get_branch_list()
     for branch in branch_list:
-        output = run_command("git push origin " + branch + " --delete")
+        output = run_command("git push " + args.remote + " " + branch + " --delete")
         print(output)
 
         output = run_command("git branch -D " + branch)
