@@ -1,4 +1,4 @@
-Simple python script to remove already merged branches in your local and origin.
+Simple python script to remove already merged branches in your local and remote (origin by default).
 
 usage, run in your git repo directory:
 
