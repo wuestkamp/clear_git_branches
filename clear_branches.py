@@ -27,7 +27,7 @@ def run_command(cmd):
 
 
 def get_branch_list():
-    output = run_command("git branch --merged " + args.base_branch)
+    output = run_command("git branch -r --merged " + args.base_branch)
     output_list = output.split("\n")
     branch_list = []
     for line in output_list:
@@ -53,6 +53,7 @@ def ls():
 def rm():
     branch_list = get_branch_list()
     for branch in branch_list:
+        branch = branch.replace(args.remote + '/', '')
         output = run_command("git push " + args.remote + " " + branch + " --delete")
         print(output)
 
